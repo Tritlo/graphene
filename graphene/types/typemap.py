@@ -49,6 +49,8 @@ def resolve_type(resolve_type_func, map, type_name, root, context, info):
     return _type
 
 
+globalType = type
+
 class TypeMap(GraphQLTypeMap):
 
     def __init__(self, types, auto_camelcase=True):
@@ -205,6 +207,7 @@ class TypeMap(GraphQLTypeMap):
                 field = get_field_as(field.get_type(), _as=Field)
                 if not field:
                     continue
+            print(type, field, field.type)
             map = self.reducer(map, field.type)
             field_type = self.get_field_type(map, field.type)
             if is_input_type:
